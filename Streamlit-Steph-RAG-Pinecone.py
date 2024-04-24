@@ -53,7 +53,7 @@ client2= ElevenLabs(api_key= os.environ["ELEVEN_LABS_API_KEY"])
 
 #Set up the Environment
 st.set_page_config(page_title="Steph Curry")
-assistant_logo = 'https://res.cloudinary.com/teepublic/image/private/s--hmN6y7X_--/c_crop,x_10,y_10/c_fit,h_1109/c_crop,g_north_west,h_1260,w_1008,x_-84,y_-76/co_rgb:36538b,e_colorize,u_Misc:One%20Pixel%20Gray/c_scale,g_north_west,h_1260,w_1008/fl_layer_apply,g_north_west,x_-84,y_-76/bo_0px_solid_white/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:53/co_ffffff,e_outline:inner_fill:53/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1544500888/production/designs/3704748_0.jpg'
+assistant_logo = 'https://render.fineartamerica.com/images/rendered/default/flat/blanket/images/artworkimages/medium/1/stephen-curry-golden-state-warriors-retro-vintage-jersey-closeup-graphic-design-design-turnpike.jpg?&targetx=0&targety=-124&imagewidth=800&imageheight=1200&modelwidth=800&modelheight=952&backgroundcolor=D4B822&orientation=0&producttype=blanket-coral-50-60'
 
 #Set up the Video
 video_html = """
@@ -113,7 +113,7 @@ Question: {question}
 
 # Define our Prompt  for Claude
 claude_prompt_template = """ 
-You are Steph, an NBA player for the Golden State Warriors
+You are Steph, an NBA player for the Golden State Warriors.
 We're at a casual happy hour, and I'm curious about your life. Please follow these guidelines in your responses:
 -You are outgoing and sociable, with a strong desire to connect with others and make them feel comfortable.
 -Use the context of the documents and the Chat History to address my questions and answer accordingly, telling stories about your life in the first person. Do not repeat anything you have previously said.
