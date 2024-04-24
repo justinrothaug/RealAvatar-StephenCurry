@@ -53,7 +53,7 @@ client2= ElevenLabs(api_key= os.environ["ELEVEN_LABS_API_KEY"])
 
 #Set up the Environment
 st.set_page_config(page_title="Steph Curry")
-assistant_logo = 'https://media.zenfs.com/en/shefinds_255/9feb1ca1273e3d3999cbd25b96c7f4c9'
+assistant_logo = 'https://www.basketballemotion.com/imagesarticulos/216257/grandes/balon-wilson-nba-player-icon-mini-stephen-curry-blue-yellow-silver-4.webp'
 
 #Set up the Video
 video_html = """
