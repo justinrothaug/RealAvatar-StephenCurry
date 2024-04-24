@@ -171,7 +171,7 @@ memory=ConversationBufferMemory(memory_key="chat_history", chat_memory=msgs, ret
 #chatGPT
 def get_chatassistant_chain_GPT():
     embeddings_model = OpenAIEmbeddings()
-    vectorstore_GPT = PineconeVectorStore(index_name="001-realavatar-sofia", embedding=embeddings_model)
+    vectorstore_GPT = PineconeVectorStore(index_name="001-realavatar-steph", embedding=embeddings_model)
     set_debug(True)
     llm_GPT = ChatOpenAI(model="gpt-4-turbo", temperature=1)
     chain_GPT=ConversationalRetrievalChain.from_llm(llm=llm_GPT, retriever=vectorstore_GPT.as_retriever(),memory=memory,combine_docs_chain_kwargs={"prompt": Prompt_GPT})
@@ -182,7 +182,7 @@ chain_GPT = get_chatassistant_chain_GPT()
 #Claude
 def get_chatassistant_chain(): 
     embeddings = OpenAIEmbeddings()
-    vectorstore = PineconeVectorStore(index_name="001-realavatar-sofia", embedding=embeddings)
+    vectorstore = PineconeVectorStore(index_name="001-realavatar-steph", embedding=embeddings)
     set_debug(True)
     llm = ChatAnthropic(temperature=0, anthropic_api_key=api_key, model_name="claude-3-opus-20240229", model_kwargs=dict(system=claude_prompt_template))
     chain=ConversationalRetrievalChain.from_llm(llm=llm, retriever=vectorstore.as_retriever(), memory=memory)
@@ -192,7 +192,7 @@ chain = get_chatassistant_chain()
 #Llama
 def get_chatassistant_chain_Llama():
     embeddings = OpenAIEmbeddings()
-    vectorstore_Llama = PineconeVectorStore(index_name="001-realavatar-sofia", embedding=embeddings)
+    vectorstore_Llama = PineconeVectorStore(index_name="001-realavatar-steph", embedding=embeddings)
     set_debug(True)
     llm_Llama = Replicate(model="meta/llama-2-70b-chat:2d19859030ff705a87c746f7e96eea03aefb71f166725aee39692f1476566d48",model_kwargs={"max_length":500,"max_new_tokens": 500, "temperature": 1, "top_p": 1, "max_retries": 1})
     chain_Llama=ConversationalRetrievalChain.from_llm(llm=llm_Llama, retriever=vectorstore_Llama.as_retriever(),memory=ConversationBufferMemory(memory_key="chat_history"),combine_docs_chain_kwargs={"prompt": Prompt_Llama}, max_tokens_limit=3000)
