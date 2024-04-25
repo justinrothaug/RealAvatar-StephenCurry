@@ -36,6 +36,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.globals import set_verbose, set_debug
 from streamlit_mic_recorder import mic_recorder, speech_to_text
+# Getting Ex-Human to work
+import requests
+from os import path 
+from pydub import AudioSegment 
+import subprocess
 
 # Importing Google Vertex
 #from langchain_google_vertexai import VertexAIModelGarden
