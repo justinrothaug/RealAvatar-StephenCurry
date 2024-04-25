@@ -15,7 +15,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain_community.callbacks import get_openai_callback
 # Importing Eleven Labs and HTML Audio
 from elevenlabs.client import ElevenLabs
-from elevenlabs import play
+from elevenlabs import play, save
 import base64
 import array
 # Importing Pinecone
