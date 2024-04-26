@@ -265,24 +265,24 @@ if text:
         cleaned = re.sub(r'\*.*?\*', '', text)
                 
 # Set path for saving Ex-Human MP4 and EL MP3
-        path='C:\\Users\\HP\\RealAvatar-StephenCurry\\'
+        #path='C:\\Users\\HP\\RealAvatar-StephenCurry\\'
 # convert mp3 file to shortened mp3 file, since there's a 15 second maximum..also the EL mp3 codec wasn't playing for some reason
-        audio = client2.generate(text=cleaned, voice="Andre", model="eleven_turbo_v2")
-        save(audio, path+'Output.mp3')
-        sound = AudioSegment.from_mp3(path+'Output.mp3') 
-        song = sound[:15000]
-        song.export(path+'Output2.mp3', format="mp3")         
+        #audio = client2.generate(text=cleaned, voice="Andre", model="eleven_turbo_v2")
+        #save(audio, path+'Output.mp3')
+        #sound = AudioSegment.from_mp3(path+'Output.mp3') 
+        #song = sound[:15000]
+        #song.export(path+'Output2.mp3', format="mp3")         
 #Ex-Human convert mp3 file to lipsync
-        url = "https://api.exh.ai/animations/v3/generate_lipsync_from_audio"
-        files = { "audio_file": (path+"Output2.mp3", open(path+"Output2.mp3", "rb"), "audio/mp3") }
-        payload = { "idle_url": "https://ugc-idle.s3-us-west-2.amazonaws.com/est_a8973a827652539f7b679f4867a96835.mp4" }
-        headers = {"accept": "application/json", "authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImplZmZAcmVhbGF2YXRhci5haSJ9.W8IWlVAaL5iZ1_BH2XvA84YJ6d5wye9iROlNCaeATlssokPUynh_nLx8EdI0XUakgrVpx9DPukA3slvW77R6QQ"}
-        lipsync = requests.post(url, data=payload, files=files, headers=headers)
-        path_to_response = path+"Output.mp4"  # Specify the path to save the video response
-        with open(path_to_response, "wb") as f:
-            f.write(lipsync.content)
+        #url = "https://api.exh.ai/animations/v3/generate_lipsync_from_audio"
+        #files = { "audio_file": (path+"Output2.mp3", open(path+"Output2.mp3", "rb"), "audio/mp3") }
+        #payload = { "idle_url": "https://ugc-idle.s3-us-west-2.amazonaws.com/est_a8973a827652539f7b679f4867a96835.mp4" }
+        #headers = {"accept": "application/json", "authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImplZmZAcmVhbGF2YXRhci5haSJ9.W8IWlVAaL5iZ1_BH2XvA84YJ6d5wye9iROlNCaeATlssokPUynh_nLx8EdI0XUakgrVpx9DPukA3slvW77R6QQ"}
+        #lipsync = requests.post(url, data=payload, files=files, headers=headers)
+        #path_to_response = path+"Output.mp4"  # Specify the path to save the video response
+        #with open(path_to_response, "wb") as f:
+        #    f.write(lipsync.content)
  #If you really want to see the video file, launch VLC and play it (hackyyy)
-        subprocess.Popen(["C:/Program Files (x86)/VideoLAN/VLC/vlc.exe", path+"Output.mp4"])
+        #subprocess.Popen(["C:/Program Files (x86)/VideoLAN/VLC/vlc.exe", path+"Output.mp4"])
                 
         audio = client2.generate(text=cleaned, voice="Steph", model="eleven_turbo_v2")
         # Create single bytes object from the returned generator.
