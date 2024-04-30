@@ -106,21 +106,16 @@ We're at a casual happy hour, and I'm curious about your life. Please follow the
 -Keep your responses short, no longer than one paragraph with 100 characters. 
 -Ask follow-up questions or suggest related topics you think I'd find interesting.
 -You can talk about other topics broadly, but do not make up any details about Steph or his beliefs if you can't find the related details within the document.
--Appropriately following the Guardrails provided:
 
-Guardrails:
-<grs>
-You should not speak about his wealth or net worth.
-You should not speak about Democrats, Republicans, or Donald Trump; or geopolitics in general.
-You should not speak with curse words.
-You should not speak about Suicide or Self-Harm.
-You should not speak about pornography or child pornography.
-You should not take a position on the Israel/Palestine conflict and should instead respond with a call for peace.
-</grs>
+
+=========
 Chat History:
 {chat_history}
-Question: {question}
 =========
+Question: 
+{question}
+=========
+Context:
 {context}
 =========
 """
@@ -138,19 +133,14 @@ We're at a casual happy hour, and I'm curious about your life. Please follow the
 -Respond in English only.
 -Appropriately following the Guardrails provided:
 
-Guardrails:
-<grs>
-You should not speak about her wealth or net worth.
-You should not speak about Democrats, Republicans, or Donald Trump; or geopolitics in general.
-You should not speak with curse words.
-You should not speak about Suicide or Self-Harm.
-You should not speak about pornography or child pornography.
-You should not take a position on the Israel/Palestine conflict and should instead respond with a call for peace.
-</grs>
+=========
 Chat History:
 {chat_history}
-Question: {question}
 =========
+Question: 
+{question}
+=========
+Context:
 {context}
 =========
 """
@@ -164,10 +154,16 @@ We're at a casual happy hour, and I'm curious about your life. Please follow the
 -Keep your responses short, no longer than one paragraph with 100 characters. 
 -Ask follow-up questions or suggest related topics you think I'd find interesting.
 -You can talk about other topics broadly, but do not make up any details about Steph or his beliefs if you can't find the related details within the document.
--Appropriately following the Guardrails provided:
-{chat_history}
-Question: {question}
+
+
 =========
+Chat History:
+{chat_history}
+=========
+Question: 
+{question}
+=========
+Context:
 {context}
 =========
 """
@@ -175,6 +171,7 @@ Question: {question}
 # In case we want different Prompts for GPT and Llama
 Prompt_GPT = PromptTemplate(template=GPT_prompt_template, input_variables=["question", "context", "chat_history"])
 Prompt_Llama = PromptTemplate(template=Llama_prompt_template, input_variables=["question", "context", "chat_history"])
+Prompt_Claude = PromptTemplate(template=claude_prompt_template, input_variables=["question", "context", "system", "chat_history"])
 
 
 # Add in Chat Memory
@@ -197,11 +194,11 @@ chain_GPT = get_chatassistant_chain_GPT()
 #Claude
 def get_chatassistant_chain(): 
     embeddings = OpenAIEmbeddings()
-    vectorstore = PineconeVectorStore(index_name="001-realavatar-steph", embedding=embeddings)
+    vectorstore = PineconeVectorStore(index_name="000-realavatar-andrew-unstructured", embedding=embeddings)
     set_debug(True)
-    llm = ChatAnthropic(temperature=0, anthropic_api_key=api_key, model_name="claude-3-haiku-20240307", model_kwargs=dict(system=claude_prompt_template))
+    llm = ChatAnthropic(temperature=0, anthropic_api_key=api_key, model_name="claude-3-haiku-20240307", system="only respond in English")
     #llm = ChatAnthropic(temperature=0, anthropic_api_key=api_key, model_name="claude-3-opus-20240229", model_kwargs=dict(system=claude_prompt_template))
-    chain=ConversationalRetrievalChain.from_llm(llm=llm, retriever=vectorstore.as_retriever(), memory=memory)
+    chain=ConversationalRetrievalChain.from_llm(llm=llm, retriever=vectorstore.as_retriever(), memory=memory, combine_docs_chain_kwargs={"prompt": Prompt_Claude})
     return chain
 chain = get_chatassistant_chain()
 
