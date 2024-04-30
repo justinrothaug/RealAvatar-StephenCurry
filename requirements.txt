@@ -13,6 +13,7 @@ sentence_transformers
 streamlit-mic-recorder
 pygame
 pydub
+langchain-google-vertexai
 
 #Depricated
 #dvc
