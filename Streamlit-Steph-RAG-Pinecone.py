@@ -264,7 +264,9 @@ if text:
     with st.chat_message("assistant", avatar=assistant_logo):
         message_placeholder = st.empty()
         response = chain.invoke({"question": user_prompt})
-        message_placeholder.markdown(response['answer'])  
+        text = str(response['answer'])
+        cleaned = re.sub(r'\*.*?\*', '', text)
+        message_placeholder.markdown(cleaned) 
 
         #ElevelLabs API Call and Return
         text = str(response['answer'])
@@ -310,7 +312,9 @@ if user_prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant", avatar=assistant_logo):
         message_placeholder = st.empty()
         response = chain.invoke({"question": user_prompt})
-        message_placeholder.markdown(response['answer']) 
+        text = str(response['answer'])
+        cleaned = re.sub(r'\*.*?\*', '', text)
+        message_placeholder.markdown(cleaned) 
                 
         #ElevelLabs API Call and Return
         text = str(response['answer'])
