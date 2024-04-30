@@ -60,8 +60,7 @@ ELEVEN_LABS_API_KEY= os.environ["ELEVEN_LABS_API_KEY"]
 client2= ElevenLabs(api_key= os.environ["ELEVEN_LABS_API_KEY"])
 PPLX_API_KEY= os.environ['PPLX_API_KEY']
 
-from langsmith import wrappers
-client = wrappers.wrap_openai(OpenAI())
+
 os.environ["LANGCHAIN_TRACING_V2"]="true"
 os.environ["LANGCHAIN_ENDPOINT"]="https://api.smith.langchain.com"
 os.environ["LANGCHAIN_API_KEY"]="ls__f58fcca57d5b430998efab563129b779"
