@@ -96,7 +96,7 @@ with st.sidebar:
         
         
     # model names - https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
-    model = st.selectbox('What model would you like to use?',('claude-3-opus-20240229','llama-3-70b-instruct','gpt-4-turbo', 'mixtral-8x22b-instruct'))
+    model = st.selectbox('What model would you like to use?',('claude-3-opus-20240229','llama-3-70b-instruct','gpt-4-turbo', 'mixtral-8x22b-instruct', 'gemini-1.5-pro-preview-0409'))
 
 
 # Define our Prompt for GPT
@@ -227,7 +227,16 @@ def get_chatassistant_chain_GPT_PPX():
 chain_GPT_PPX = get_chatassistant_chain_GPT_PPX()
 
 
-
+#Google generate
+def get_chatassistant_chain_Google():
+    embeddings = OpenAIEmbeddings()
+    vectorstore = PineconeVectorStore(index_name="000-realavatar-andrew-unstructured", embedding=embeddings)
+    set_debug(True)
+    #llm_Google = VertexAIModelGarden(project="planar-oasis-413918", endpoint_id="YOUR ENDPOINT_ID")
+    llm_Google = VertexAI(model_name="gemini-1.5-pro-preview-0409", max_output_tokens=1000, temperature=0.3, project="planar-oasis-413918")
+    chain_Google=ConversationalRetrievalChain.from_llm(llm=llm_Google, retriever=vectorstore.as_retriever(),memory=memory, combine_docs_chain_kwargs={"prompt": Prompt_Llama})
+    return chain_Google
+chain_Google = get_chatassistant_chain_Google()
 
 
 
@@ -249,7 +258,9 @@ if model == "llama-3-70b-instruct":
     chain=chain_Llama
 if model == "mixtral-8x22b-instruct":
     chain=chain_GPT_PPX
-
+if model == "gemini-1.5-pro-preview-0409":
+    chain=chain_Google
+            
 #Start Chat and Response
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
