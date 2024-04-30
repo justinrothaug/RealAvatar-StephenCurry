@@ -60,6 +60,13 @@ ELEVEN_LABS_API_KEY= os.environ["ELEVEN_LABS_API_KEY"]
 client2= ElevenLabs(api_key= os.environ["ELEVEN_LABS_API_KEY"])
 PPLX_API_KEY= os.environ['PPLX_API_KEY']
 
+from langsmith import wrappers
+client = wrappers.wrap_openai(OpenAI())
+os.environ["LANGCHAIN_TRACING_V2"]="true"
+os.environ["LANGCHAIN_ENDPOINT"]="https://api.smith.langchain.com"
+os.environ["LANGCHAIN_API_KEY"]="ls__f58fcca57d5b430998efab563129b779"
+os.environ["LANGCHAIN_PROJECT"]="pt-uncommon-nexus-100"
+
 #Set up the Environment
 st.set_page_config(page_title="Steph Curry")
 assistant_logo = 'https://render.fineartamerica.com/images/rendered/default/flat/blanket/images/artworkimages/medium/1/stephen-curry-golden-state-warriors-retro-vintage-jersey-closeup-graphic-design-design-turnpike.jpg?&targetx=0&targety=-124&imagewidth=800&imageheight=1200&modelwidth=800&modelheight=952&backgroundcolor=D4B822&orientation=0&producttype=blanket-coral-50-60'
