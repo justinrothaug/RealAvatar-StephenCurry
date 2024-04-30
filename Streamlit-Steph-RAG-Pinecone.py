@@ -43,7 +43,8 @@ from pydub import AudioSegment
 import subprocess
 
 # Importing Google Vertex
-#from langchain_google_vertexai import VertexAIModelGarden
+from langchain_google_vertexai import VertexAIModelGarden
+from langchain_google_vertexai import VertexAI
 
 # Set the path as environment variable
 os.environ['PATH'] = 'C://Users//HP//Desktop'
@@ -59,6 +60,7 @@ chat= ChatOpenAI(openai_api_key= os.environ["OPENAI_API_KEY"])
 ELEVEN_LABS_API_KEY= os.environ["ELEVEN_LABS_API_KEY"]
 client2= ElevenLabs(api_key= os.environ["ELEVEN_LABS_API_KEY"])
 PPLX_API_KEY= os.environ['PPLX_API_KEY']
+GOOGLE_APPLICATION_CREDENTIALS = "application_default_credentials.json" 
 
 
 os.environ["LANGCHAIN_TRACING_V2"]="true"
